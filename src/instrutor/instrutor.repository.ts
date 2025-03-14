@@ -107,6 +107,36 @@ export class InstrutorRepository {
     }
   }
 
+  async updatePartOfInstrutor(id: number, instrutor: Instrutor): Promise<void> {
+    try {
+      // Monta a query de update
+      const statementUpdateInstrutor = `
+        update instrutores set
+          nome = $1,
+          data_nascimento = $2,
+          cpf = $3,
+          telefone = $4,
+          sexo = $5,
+          email = $6,
+          data_admissao = $7,
+          data_desligamento = $8
+        where id = $9
+      `;
+      await this.database.query(statementUpdateInstrutor, [
+        instrutor.nome,
+        instrutor.dataNascimento,
+        instrutor.cpf,
+        instrutor.telefone,
+        instrutor.sexo,
+        instrutor.email,
+        instrutor.data_admissao,
+        instrutor.data_Desligamento,
+        id,
+      ]);
+    } catch (error) {
+      throw new Error("Erro ao atualizar instrutor");
+    }
+  }
 
   async delete(id: number) {
     const instrutor = await this.getById(id);

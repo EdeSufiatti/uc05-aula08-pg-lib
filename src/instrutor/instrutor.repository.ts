@@ -1,7 +1,7 @@
 import { Instrutor } from "../shared/model/instrutor";
-export class InstrutorRepository {
 
-  export class InstrutorRepository {
+
+export class InstrutorRepository {
   private database: any;
   constructor(database: any) {
     this.database = database;
@@ -106,36 +106,16 @@ export class InstrutorRepository {
       throw new Error("Erro ao atualizar instrutor");
     }
   }
-}
-async update PartOfInstrutor(id: number, instrutor: Instrutor): Promise < void> {
-  try {
-    // Obter os dados do instrutor do banco
-    const saved = await this.getById(id);
-    if(!saved) {
+
+
+  async delete(id: number) {
+    const instrutor = await this.getById(id);
+
+    if (!instrutor) {
       throw new Error("Instrutor nao encontrado");
     }
-
-    let instrutorParams: Instrutor = {} as Instrutor;
-
-    // Nome
-    instrutorParams.nome = saved.nome !== instrutor.nome ? instrutor.nome : saved.nome;
-    // DataNascimento
-    instrutorParams.dataNascimento = saved.dataNascimento !== instrutor.dataNascimento ? instrutor.dataNascimento : saved.dataNascimento;
-    // CPF
-    instrutorParams.cpf = saved.cpf !== instrutor.cpf ? instrutor.cpf : saved.cpf;
-    // Telefone
-    instrutor.telefone = saved.telefone !== instrutor.telefone ? instrutor.telefone : saved.telefone;
-    // Sexo
-    instrutorParams.sexo = saved.sexo !== instrutor.sexo ? instrutor.sexo : saved.sexo;
-    // Email
-    instrutorParams.email = saved.email !== instrutor.email ? instrutor.email : saved.email;
-    // DataAdmissao
-    instrutorParams.data_admissao = saved.data_admissao !== instrutor.data_admissao ? instrutor.data_admissao : saved.data_admissao;
-    // DataDesligamento
-    instrutorParams.data_Desligamento = saved.data_Desligamento !== instrutor.data_Desligamento ? instrutor.data_Desligamento : saved.data_Desligamento;
-
-    await this.updateInstrutor(id, instrutorParams);
-  } catch(error) {
-    throw new Error("Erro ao atualizar instrutor");
+    // Monta a query de exclusão
+    const statementDeleteInstrutores = `delete from instrutores where id = $1`;
+    await this.database.query(statementDeleteInstrutores, [id]);
   }
 }

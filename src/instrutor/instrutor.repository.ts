@@ -1,3 +1,4 @@
+import { Instrutor } from "../shared/model/instrutor";
 export class InstrutorRepository {
 
   export class InstrutorRepository {

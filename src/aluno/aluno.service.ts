@@ -13,7 +13,7 @@ export class AlunoService {
   }
 
   async getAll(): Promise<Aluno[]> {
-    return await this.repository.getAll();
+    return await this.repository.getAll();  
   }
 
   async getById(id: number): Promise<Aluno | undefined> {

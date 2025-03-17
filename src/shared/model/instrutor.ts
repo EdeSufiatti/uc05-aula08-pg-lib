@@ -7,6 +7,6 @@ export type Instrutor = {
   sexo: string;
   email: string;
   data_admissao: Date;
-  data_Desligamento: Date;
+  data_desligamento: Date;
 };
 

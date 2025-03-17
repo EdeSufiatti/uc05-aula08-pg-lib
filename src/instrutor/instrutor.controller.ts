@@ -1,4 +1,4 @@
-import { Instrutor } from './../shared/model/instrutor';
+
 import { Instrutor } from "../shared/model/instrutor";
 import { InstrutorService } from "./instrutor.service";
 import { Request, Response } from "express";

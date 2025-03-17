@@ -7,7 +7,7 @@ export class InstrutorService {
 
   }
 
-  async create(instrutor: Instrutor): Promise<Instrutor> {
+  async createInstrutor(instrutor: Instrutor): Promise<Instrutor> {
     return this.instrutorRepository.create(instrutor);
   }
 

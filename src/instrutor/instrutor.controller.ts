@@ -21,7 +21,7 @@ export class InstrutorController {
 
   }
 
-  asyn getInstrutores(_: Request, res: Response) {
+  async getInstrutores(_: Request, res: Response) {
     try {
       const instrutores = await this.service.getAll();
       res.status(200).send(instrutores);
@@ -54,9 +54,9 @@ export class InstrutorController {
       console.log("Error - InstrutorController>getInstrutorById", error);
       res.status(500).send({ error: true, message: error });
 
-    
+
     }
-    
+
   }
 async updatePartOfInstrutor(req: Request<{ id: string }, {}, Instrutor>, res: Response) {
   try {
@@ -119,4 +119,4 @@ async updateAllFieldsInstrutor(req: Request<{ id: string }, {}, Instrutor>, res:
       res.status(500).send({ error: true, message: error });
     }
   }
-}	
+}

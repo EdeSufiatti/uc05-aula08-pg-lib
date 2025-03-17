@@ -1,7 +1,7 @@
 import pgp from "pg-promise";
 
 const connectionString =
-  "postgres://postgres:password@localhost:5432/matriculas_db";
+  "postgres://postgres:ede@localhost:5432/matriculas_db";
 
 export class Database {
   private connection: any;

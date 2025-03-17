@@ -1,4 +1,5 @@
-import { Instrutor } from "../shared/model/instrutor";
+import { Instrutor } from './../shared/model/instrutor';
+
 
 
 export class InstrutorRepository {
@@ -24,8 +25,8 @@ export class InstrutorRepository {
       instrutor.data_desligamento
     ]);
     return {
-      id: result.id,
       ...instrutor,
+      id: result.id,
     }
 
   }
@@ -73,7 +74,7 @@ export class InstrutorRepository {
       sexo: result.sexo,
       email: result.email,
       data_admissao: result.data_admissao,
-      data_Desligamento: result.data_desligamento,
+      data_desligamento: result.data_desligamento,
     };
   }
   async updateInstrutor(id: number, instrutor: Instrutor): Promise<void> {
@@ -99,7 +100,7 @@ export class InstrutorRepository {
         instrutor.sexo,
         instrutor.email,
         instrutor.data_admissao,
-        instrutor.data_Desligamento,
+        instrutor.data_desligamento,
         id,
       ]);
     } catch (error) {
@@ -130,7 +131,7 @@ export class InstrutorRepository {
         instrutor.sexo,
         instrutor.email,
         instrutor.data_admissao,
-        instrutor.data_Desligamento,
+        instrutor.data_desligamento,
         id,
       ]);
     } catch (error) {

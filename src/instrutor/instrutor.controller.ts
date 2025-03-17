@@ -32,10 +32,6 @@ export class InstrutorController {
   }
 
 
-
-
-
-
   async getInstrutorById(req: Request<{ id: string }>, res: Response) {
     try {
       const { id } = req.params;

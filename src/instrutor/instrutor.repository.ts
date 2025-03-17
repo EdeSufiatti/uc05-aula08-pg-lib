@@ -11,12 +11,12 @@ export class InstrutorRepository {
     const queryInsertInstrutores = `
         insert into instrutores (nome, data_nascimento, cpf,
           matricula, sexo, email, data_admissao,data_desligamento)
-        values ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
+        values ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;
       `;
 
     const result = await this.database.one(queryInsertInstrutores, [
       instrutor.nome,
-      instrutor.dataNascimento,
+      instrutor.data_nascimento,
       instrutor.cpf,
       instrutor.matricula,
       instrutor.sexo,
@@ -44,7 +44,7 @@ export class InstrutorRepository {
     return result.map((instrutor: any) => ({
       id: instrutor.id,
       nome: instrutor.nome,
-      dataNascimento: instrutor.data_nascimento,
+      data_nascimento: instrutor.data_nascimento,
       cpf: instrutor.cpf,
       matricula: instrutor.matricula,
       sexo: instrutor.sexo,
@@ -68,7 +68,7 @@ export class InstrutorRepository {
     return {
       id,
       nome: result.nome,
-      dataNascimento: result.data_nascimento,
+      data_nascimento: result.data_nascimento,
       cpf: result.cpf,
       matricula: result.matricula,
       sexo: result.sexo,
@@ -94,7 +94,7 @@ export class InstrutorRepository {
       `;
       await this.database.query(statementUpdateInstrutor, [
         instrutor.nome,
-        instrutor.dataNascimento,
+        instrutor.data_nascimento,
         instrutor.cpf,
         instrutor.matricula,
         instrutor.sexo,
@@ -125,7 +125,7 @@ export class InstrutorRepository {
       `;
       await this.database.query(statementUpdateInstrutor, [
         instrutor.nome,
-        instrutor.dataNascimento,
+        instrutor.data_nascimento,
         instrutor.cpf,
         instrutor.matricula,
         instrutor.sexo,

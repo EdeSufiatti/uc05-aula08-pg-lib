@@ -1,7 +1,7 @@
 export type Instrutor = {
   id: number;
   nome: string;
-  dataNascimento: Date;
+  data_nascimento: Date;
   cpf: string;
   matricula: string;
   sexo: string;

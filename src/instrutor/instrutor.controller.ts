@@ -21,16 +21,6 @@ export class InstrutorController {
 
   }
 
- async getInstrutorById( _: Request<{ id: string }>, res: Response) {
-    try {
-      const instrutor = await this.service.getAll();
-      res.status(200).send(instrutor);
-    } catch (error) {
-      console.log("Error - InstrutorController>getInstrutorById", error);
-      res.status(500).send({ error: true, message: error });
-    }
-  }
-
 
   async getInstrutorById(req: Request<{ id: string }>, res: Response) {
     try {
@@ -44,7 +34,7 @@ export class InstrutorController {
         res.status(400).send({ error: true, message: "Informe um ID válido" });
         return;
       }
-     const Instrutor = await this.service.getById(instrutorId);
+      const Instrutor = await this.service.getById(instrutorId);
       if (!Instrutor) {
         res.status(404).send({ error: true, message: "Instrutor nao encontrado" });
         return;
@@ -58,4 +48,5 @@ export class InstrutorController {
     }
 
 
+  }
 }

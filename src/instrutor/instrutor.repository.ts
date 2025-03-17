@@ -10,7 +10,7 @@ export class InstrutorRepository {
   async create(instrutor: Instrutor): Promise<Instrutor> {
     const queryInsertInstrutores = `
         insert into instrutores (nome, data_nascimento, cpf,
-          telefone, sexo, email, data_admissao,data_desligamento)
+          matricula, sexo, email, data_admissao,data_desligamento)
         values ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
       `;
 
@@ -18,7 +18,7 @@ export class InstrutorRepository {
       instrutor.nome,
       instrutor.dataNascimento,
       instrutor.cpf,
-      instrutor.telefone,
+      instrutor.matricula,
       instrutor.sexo,
       instrutor.email,
       instrutor.data_admissao,
@@ -34,7 +34,7 @@ export class InstrutorRepository {
   async getAll(): Promise<Instrutor[]> {
     const result = await this.database.query(
       `select nome, data_nascimento, cpf,
-          telefone, sexo, email, data_admissao,data_desligamento
+          matricula, sexo, email, data_admissao,data_desligamento
       from instrutores`,
       []
     );
@@ -46,7 +46,7 @@ export class InstrutorRepository {
       nome: instrutor.nome,
       dataNascimento: instrutor.data_nascimento,
       cpf: instrutor.cpf,
-      telefone: instrutor.telefone,
+      matricula: instrutor.matricula,
       sexo: instrutor.sexo,
       email: instrutor.email,
       data_admissao: instrutor.data_admissao,
@@ -59,7 +59,7 @@ export class InstrutorRepository {
   async getById(id: number): Promise<Instrutor | undefined> {
     const [result] = await this.database.query(
       `select nome, data_nascimento, cpf,
-          telefone, sexo, email, data_admissao,data_desligamento
+          matricula, sexo, email, data_admissao,data_desligamento
         from instrutores
       where id = $1`,
       [id]
@@ -70,7 +70,7 @@ export class InstrutorRepository {
       nome: result.nome,
       dataNascimento: result.data_nascimento,
       cpf: result.cpf,
-      telefone: result.telefone,
+      matricula: result.matricula,
       sexo: result.sexo,
       email: result.email,
       data_admissao: result.data_admissao,
@@ -85,7 +85,7 @@ export class InstrutorRepository {
           nome = $1,
           data_nascimento = $2,
           cpf = $3,
-          telefone = $4,
+          matricula = $4,
           sexo = $5,
           email = $6,
           data_admissao = $7,
@@ -96,7 +96,7 @@ export class InstrutorRepository {
         instrutor.nome,
         instrutor.dataNascimento,
         instrutor.cpf,
-        instrutor.telefone,
+        instrutor.matricula,
         instrutor.sexo,
         instrutor.email,
         instrutor.data_admissao,
@@ -116,7 +116,7 @@ export class InstrutorRepository {
           nome = $1,
           data_nascimento = $2,
           cpf = $3,
-          telefone = $4,
+          matricula = $4,
           sexo = $5,
           email = $6,
           data_admissao = $7,
@@ -127,7 +127,7 @@ export class InstrutorRepository {
         instrutor.nome,
         instrutor.dataNascimento,
         instrutor.cpf,
-        instrutor.telefone,
+        instrutor.matricula,
         instrutor.sexo,
         instrutor.email,
         instrutor.data_admissao,

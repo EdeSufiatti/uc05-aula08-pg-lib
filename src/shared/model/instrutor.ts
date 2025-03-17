@@ -3,7 +3,7 @@ export type Instrutor = {
   nome: string;
   dataNascimento: Date;
   cpf: string;
-  telefone: string;
+  matricula: string;
   sexo: string;
   email: string;
   data_admissao: Date;

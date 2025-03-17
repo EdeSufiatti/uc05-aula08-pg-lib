@@ -10,15 +10,18 @@ export class InstrutorController {
     this.service = service;
   }
 
+
+
   async createInstrutor(req: Request<{}, {}, Instrutor>, res: Response) {
     try {
       const instrutor = req.body;
       const novoInstrutor = await this.service.createInstrutor(instrutor);
-      res.status(201).json(instrutor);
+      res.status(201).json(novoInstrutor);
     } catch (error) {
-      res.status(400).json({ error: true,  message: error });
+      // Adicione este console.log para ver o que está vindo da exception
+      console.error("Erro ao criar instrutor:", error);
+      res.status(400).json({ error: true, message: error });
     }
-
   }
 
   async getInstrutores(_: Request, res: Response) {

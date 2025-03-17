@@ -108,7 +108,7 @@ export class InstrutorRepository {
     }
   }
 
-  async updatePartOfInstrutor(id: number, instrutor: Instrutor): Promise<void> {
+ /* async updatePartOfInstrutor(id: number, instrutor: Instrutor): Promise<void> {
     try {
       // Monta a query de update
       const statementUpdateInstrutor = `
@@ -138,6 +138,48 @@ export class InstrutorRepository {
       throw new Error("Erro ao atualizar instrutor");
     }
   }
+*/
+async updatePartOfInstrutor(id: number, instrutor: Partial<Instrutor>): Promise<void> {
+  try {
+
+    const saved = await this.getById(id);
+    if (!saved) {
+      throw new Error("Instrutor não encontrado");
+    }
+
+
+    let instrutorParams: Instrutor = {} as Instrutor;
+
+
+    instrutorParams.nome = (instrutor.nome !== undefined && instrutor.nome !== saved.nome)
+      ? instrutor.nome : saved.nome;
+
+    instrutorParams.data_nascimento = (instrutor.data_nascimento !== undefined && instrutor.data_nascimento !== saved.data_nascimento)
+      ? instrutor.data_nascimento : saved.data_nascimento;
+
+    instrutorParams.cpf = (instrutor.cpf !== undefined && instrutor.cpf !== saved.cpf)
+      ? instrutor.cpf : saved.cpf;
+
+    instrutorParams.matricula = (instrutor.matricula !== undefined && instrutor.matricula !== saved.matricula)
+      ? instrutor.matricula : saved.matricula;
+
+    instrutorParams.sexo = (instrutor.sexo !== undefined && instrutor.sexo !== saved.sexo)
+      ? instrutor.sexo : saved.sexo;
+
+    instrutorParams.email = (instrutor.email !== undefined && instrutor.email !== saved.email)
+      ? instrutor.email : saved.email;
+
+    instrutorParams.data_admissao = (instrutor.data_admissao !== undefined && instrutor.data_admissao !== saved.data_admissao)
+      ? instrutor.data_admissao : saved.data_admissao;
+
+    instrutorParams.data_desligamento = (instrutor.data_desligamento !== undefined && instrutor.data_desligamento !== saved.data_desligamento)
+      ? instrutor.data_desligamento : saved.data_desligamento;
+s
+    await this.updateInstrutor(id, instrutorParams);
+  } catch (error) {
+    throw error;
+  }
+}
 
   async delete(id: number) {
     const instrutor = await this.getById(id);
@@ -145,7 +187,7 @@ export class InstrutorRepository {
     if (!instrutor) {
       throw new Error("Instrutor nao encontrado");
     }
-    // Monta a query de exclusão
+
     const statementDeleteInstrutores = `delete from instrutores where id = $1`;
     await this.database.query(statementDeleteInstrutores, [id]);
   }

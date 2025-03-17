@@ -21,7 +21,7 @@ export class InstrutorRepository {
       instrutor.sexo,
       instrutor.email,
       instrutor.data_admissao,
-      instrutor.data_Desligamento
+      instrutor.data_desligamento
     ]);
     return {
       id: result.id,
@@ -33,8 +33,8 @@ export class InstrutorRepository {
   async getAll(): Promise<Instrutor[]> {
     const result = await this.database.query(
       `select nome, data_nascimento, cpf,
-           telefone, sexo, email, data_admissao,data_desligamento
-       from instrutores`,
+          telefone, sexo, email, data_admissao,data_desligamento
+      from instrutores`,
       []
     );
     if (result.length === 0) {
@@ -58,9 +58,9 @@ export class InstrutorRepository {
   async getById(id: number): Promise<Instrutor | undefined> {
     const [result] = await this.database.query(
       `select nome, data_nascimento, cpf,
-           telefone, sexo, email, data_admissao,data_desligamento
-       from instrutores
-       where id = $1`,
+          telefone, sexo, email, data_admissao,data_desligamento
+        from instrutores
+      where id = $1`,
       [id]
     );
     if (!result) return;

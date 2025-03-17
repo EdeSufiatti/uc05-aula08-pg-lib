@@ -6,7 +6,7 @@ import { InstrutorService } from "./instrutor.service";
 
 export class InstrutorRoutes {
   private database: any;
-  private router: Router;
+  private Router: Router;
 
   private InstrutorRepository: InstrutorRepository;
   private InstrutorService: InstrutorService;
@@ -15,7 +15,7 @@ export class InstrutorRoutes {
 
   constructor(database: any) {
     this.database = database;
-    this.router = express.Router();
+    this.Router = express.Router();
     this.InstrutorRepository = new InstrutorRepository(this.database);
     this.InstrutorService = new InstrutorService(this.InstrutorRepository);
     this.InstrutorController = new InstrutorController(this.InstrutorService);

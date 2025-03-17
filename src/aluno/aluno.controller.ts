@@ -57,7 +57,7 @@ export class AlunoController {
         res.status(404).send({ error: true, message: "Aluno não encontrado" });
         return;
       }
-
+      res.status
       // Retorna os dados
       res.status(200).send(aluno);
     } catch (error) {

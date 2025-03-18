@@ -174,7 +174,7 @@ async updatePartOfInstrutor(id: number, instrutor: Partial<Instrutor>): Promise<
 
     instrutorParams.data_desligamento = (instrutor.data_desligamento !== undefined && instrutor.data_desligamento !== saved.data_desligamento)
       ? instrutor.data_desligamento : saved.data_desligamento;
-s
+
     await this.updateInstrutor(id, instrutorParams);
   } catch (error) {
     throw error;
